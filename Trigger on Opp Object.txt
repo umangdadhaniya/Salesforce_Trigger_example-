@@ -1,0 +1,20 @@
+trigger triggerForopp on Opportunity (before insert,before update) {
+    
+    if(trigger.isexecuting && trigger.isbefore){
+        if(trigger.isinsert){
+            for(Opportunity op :trigger.new){
+                if(op.LeadSource == 'Web'){
+                    op.Type = 'New Customer';
+                    
+                }
+            }
+        }
+        if(trigger.isupdate){
+            for(Opportunity op :trigger.new){
+                if(op.StageName == 'Closed Won'){
+                    op.Description = op.StageName;
+                }
+            }
+        }
+    }
+}

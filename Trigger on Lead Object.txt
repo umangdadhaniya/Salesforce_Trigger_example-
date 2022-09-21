@@ -1,0 +1,10 @@
+trigger triggeronLeadobjectForPhone on Lead (before insert,before update) {
+    if(trigger.isexecuting && trigger.isbefore && trigger.isInsert){
+        for(lead lc: trigger.new){
+            if(lc.leadsource == 'Phone Inquiry'){
+                lc.Description = lc.leadsource;
+            }
+        }
+    }
+
+}

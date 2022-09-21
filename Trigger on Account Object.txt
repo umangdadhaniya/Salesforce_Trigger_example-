@@ -1,0 +1,10 @@
+trigger updateFaxfield on Account (before insert,after insert,after update) {
+    if(trigger.isExecuting && trigger.isBefore && trigger.isInsert){
+        for(account ac: trigger.new){
+            if(ac.Industry == 'Energy'){
+                ac.Fax = '100';
+            }
+        }
+    }
+
+}

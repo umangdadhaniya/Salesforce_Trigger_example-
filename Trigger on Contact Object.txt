@@ -1,0 +1,11 @@
+trigger triggerForcontactObject on Contact (before insert, before update) {
+    if(trigger.isExecuting && trigger.isbefore &&(trigger.isInsert || trigger.isupdate)){
+        for(contact ce : trigger.new){
+            if(ce.Email!= NULL && ce.Phone!= NULL){
+                ce.Department = 'Finance';
+                
+            }
+        }
+    }
+
+}
